@@ -1,0 +1,244 @@
+Closes a URLConnection.
+HttpURLConnection.disconnect
+Closes an Reader unconditionally
+IOUtils.closeQuietly
+Closes an Writer unconditionally
+IOUtils.closeQuietly
+Closes an InputStream unconditionally
+IOUtils.closeQuietly
+Closes an OutputStream unconditionally
+IOUtils.closeQuietly
+Closes a Closeable unconditionally
+Closeable.close
+Closes a Closeable unconditionally
+IOUtils.closeQuietly
+Closes a Socket unconditionally
+Socket.close
+Closes a Selector unconditionally
+Selector.close
+Closes a ServerSocket unconditionally
+ServerSocket.close
+Fetches entire contents of an InputStream and represent same data as result InputStream
+ByteArrayOutputStream.toBufferedInputStream
+Fetches entire contents of an InputStream and represent same data as result InputStream
+ByteArrayOutputStream.toBufferedInputStream
+Returns the given reader if it is a , otherwise creates a BufferedReader from the given reader.
+BufferedReader.new
+Returns the given reader if it is a , otherwise creates a BufferedReader from the given reader.
+BufferedReader.new
+Returns the given reader if it is already a , otherwise creates a BufferedReader from the given reader.
+BufferedReader.new
+Returns the given reader if it is already a , otherwise creates a BufferedReader from the given reader.
+BufferedReader.new
+Returns the given Writer if it is already a , otherwise creates a BufferedWriter from the given Writer.
+BufferedWriter.new
+Returns the given Writer if it is already a , otherwise creates a BufferedWriter from the given Writer.
+BufferedWriter.new
+Returns the given OutputStream if it is already a , otherwise creates a BufferedOutputStream from the given OutputStream.
+NullPointerException.new-BufferedOutputStream.new
+Returns the given OutputStream if it is already a , otherwise creates a BufferedOutputStream from the given OutputStream.
+NullPointerException.new-BufferedOutputStream.new
+Returns the given InputStream if it is already a , otherwise creates a BufferedInputStream from the given InputStream.
+NullPointerException.new-BufferedInputStream.new
+Returns the given InputStream if it is already a , otherwise creates a BufferedInputStream from the given InputStream.
+NullPointerException.new-BufferedInputStream.new
+Gets the contents of an InputStream as a byte[]
+ByteArrayOutputStream.new-IOUtils.copy-ByteArrayOutputStream.toByteArray
+Gets contents of an InputStream as a byte[]
+IllegalArgumentException.new-IOUtils.toByteArray
+Gets the contents of an InputStream as a byte[]
+IllegalArgumentException.new-InputStream.read-IOException.new
+Gets the contents of a Reader as a byte[] using the default character encoding of the platform
+Charset.defaultCharset-IOUtils.toByteArray
+Gets the contents of a Reader as a byte[] using the specified character encoding
+ByteArrayOutputStream.new-IOUtils.copy-ByteArrayOutputStream.toByteArray
+Gets the contents of a Reader as a byte[] using the specified character encoding
+Charsets.toCharset-IOUtils.toByteArray
+Gets the contents of a String as a byte[] using the default character encoding of the platform
+Charset.defaultCharset-String.getBytes
+Gets the contents of a URI as a byte[].
+URI.toURL-IOUtils.toByteArray
+Gets the contents of a URL as a byte[].
+URL.openConnection-IOUtils.close-IOUtils.toByteArray
+Gets the contents of a URLConnection as a byte[].
+URLConnection.getInputStream-InputStream.close-IOUtils.toByteArray
+Gets the contents of an InputStream as a character array using the default character encoding of the platform
+Charset.defaultCharset-IOUtils.toCharArray
+Gets the contents of an InputStream as a character array using the specified character encoding
+CharArrayWriter.new-IOUtils.copy-CharArrayWriter.toCharArray
+Gets the contents of an InputStream as a character array using the specified character encoding
+Charsets.toCharset-IOUtils.toCharArray
+Gets the contents of a Reader as a character array
+CharArrayWriter.new-IOUtils.copy-CharArrayWriter.toCharArray
+Gets the contents of an InputStream as a String using the default character encoding of the platform
+Charset.defaultCharset-IOUtils.toString
+Gets the contents of an InputStream as a String using the specified character encoding
+StringBuilderWriter.new-IOUtils.copy-StringBuilderWriter.toString
+Gets the contents of an InputStream as a String using the specified character encoding
+Charsets.toCharset-IOUtils.toString
+Gets the contents of a Reader as a String
+StringBuilderWriter.new-IOUtils.copy-StringBuilderWriter.toString
+Gets the contents at the given URI.
+Charset.defaultCharset-IOUtils.toString
+Gets the contents at the given URI.
+URI.toURL-Charsets.toCharset-IOUtils.toString
+Gets the contents at the given URI.
+Charsets.toCharset-IOUtils.toString
+Gets the contents at the given URL.
+Charset.defaultCharset-IOUtils.toString
+Gets the contents at the given URL.
+URL.openStream-InputStream.close-IOUtils.toString
+Gets the contents at the given URL.
+Charsets.toCharset-IOUtils.toString
+Gets the contents of a byte[] as a String using the default character encoding of the platform.
+Charset.defaultCharset-String.new
+Gets the contents of a byte[] as a String using the specified character encoding
+Charsets.toCharset-String.new
+Gets the contents of an InputStream as a list of Strings, one entry per line, using the default character encoding of the platform
+Charset.defaultCharset-IOUtils.readLines
+Gets the contents of an InputStream as a list of Strings, one entry per line, using the specified character encoding
+Charsets.toCharset-InputStreamReader.new-IOUtils.readLines
+Gets the contents of an InputStream as a list of Strings, one entry per line, using the specified character encoding
+Charsets.toCharset-IOUtils.readLines
+Gets the contents of a Reader as a list of Strings, one entry per line
+IOUtils.toBufferedReader-ArrayList<String>.new-BufferedReader.readLine-String>.add-BufferedReader.readLine
+Returns an Iterator for the lines in a Reader
+LineIterator.new
+Returns an Iterator for the lines in an InputStream, using the character encoding specified (or default encoding if null)
+Charsets.toCharset-InputStreamReader.new-LineIterator.new
+Returns an Iterator for the lines in an InputStream, using the character encoding specified (or default encoding if null)
+Charsets.toCharset-IOUtils.lineIterator
+Converts the specified CharSequence to an input stream, encoded as bytes using the default character encoding of the platform.
+Charset.defaultCharset-IOUtils.toInputStream
+Converts the specified CharSequence to an input stream, encoded as bytes using the specified character encoding.
+CharSequence.toString-IOUtils.toInputStream
+Converts the specified CharSequence to an input stream, encoded as bytes using the specified character encoding
+Charsets.toCharset-IOUtils.toInputStream
+Converts the specified string to an input stream, encoded as bytes using the default character encoding of the platform.
+Charset.defaultCharset-IOUtils.toInputStream
+Converts the specified string to an input stream, encoded as bytes using the specified character encoding.
+Charsets.toCharset-String.getBytes-ByteArrayInputStream.new
+Converts the specified string to an input stream, encoded as bytes using the specified character encoding
+Charsets.toCharset-String.getBytes-ByteArrayInputStream.new
+Writes bytes from a byte[] to an OutputStream.
+OutputStream.write
+Writes bytes from a byte[] to an OutputStream using chunked writes
+Math.min-OutputStream.write
+Writes bytes from a byte[] to chars on a Writer using the default character encoding of the platform
+Charset.defaultCharset-IOUtils.write
+Writes bytes from a byte[] to chars on a Writer using the specified character encoding
+Charsets.toCharset-String.new-Writer.write
+Writes bytes from a byte[] to chars on a Writer using the specified character encoding
+Charsets.toCharset-IOUtils.write
+Writes chars from a char[] to a Writer using chunked writes
+Math.min-Writer.write
+Writes chars from a char[] to bytes on an OutputStream
+Charset.defaultCharset-IOUtils.write
+Writes chars from a char[] to bytes on an OutputStream using the specified character encoding
+Charsets.toCharset-String.new-String.getBytes-OutputStream.write
+Writes chars from a char[] to bytes on an OutputStream using the specified character encoding
+Charsets.toCharset-IOUtils.write
+Writes chars from a CharSequence to a Writer.
+CharSequence.toString-IOUtils.write
+Writes chars from a CharSequence to bytes on an OutputStream using the default character encoding of the platform
+Charset.defaultCharset-IOUtils.write
+Writes chars from a CharSequence to bytes on an OutputStream using the specified character encoding
+CharSequence.toString-IOUtils.write
+Writes chars from a CharSequence to bytes on an OutputStream using the specified character encoding
+Charsets.toCharset-IOUtils.write
+Writes chars from a String to a Writer.
+Writer.write
+Writes chars from a String to bytes on an OutputStream using the default character encoding of the platform
+Charset.defaultCharset-IOUtils.write
+Writes chars from a String to bytes on an OutputStream using the specified character encoding
+Charsets.toCharset-String.getBytes-OutputStream.write
+Writes chars from a String to bytes on an OutputStream using the specified character encoding
+Charsets.toCharset-IOUtils.write
+Writes chars from a StringBuffer to a Writer.
+StringBuffer.toString-Writer.write
+Writes chars from a StringBuffer to bytes on an OutputStream using the default character encoding of the platform
+IOUtils.write
+Writes chars from a StringBuffer to bytes on an OutputStream using the specified character encoding
+Charsets.toCharset-StringBuffer.toString-String.getBytes-OutputStream.write
+Writes the toString() value of each item in a collection to an OutputStream line by line, using the default character encoding of the platform and the specified line ending.
+Charset.defaultCharset-IOUtils.writeLines
+Writes the toString() value of each item in a collection to an OutputStream line by line, using the specified character encoding and the specified line ending.
+Charsets.toCharset-Object.toString-String.getBytes-OutputStream.write-String.getBytes-OutputStream.write
+Writes the toString() value of each item in a collection to an OutputStream line by line, using the specified character encoding and the specified line ending
+Charsets.toCharset-IOUtils.writeLines
+Writes the toString() value of each item in a collection to a Writer line by line, using the specified line ending.
+Object.toString-Writer.write-Writer.write
+Copies bytes from an InputStream to an OutputStream
+IOUtils.copyLarge
+Copies bytes from an InputStream to an OutputStream using an internal buffer of the given size
+IOUtils.copyLarge
+Copies bytes from a large (over 2GB) InputStream to an OutputStream
+IOUtils.copy
+Copies bytes from a large (over 2GB) InputStream to an OutputStream
+InputStream.read-OutputStream.write
+Copies some or all bytes from a large (over 2GB) InputStream to an OutputStream, optionally skipping input bytes
+IOUtils.copyLarge
+Copies some or all bytes from a large (over 2GB) InputStream to an OutputStream, optionally skipping input bytes
+IOUtils.skipFully-InputStream.read-OutputStream.write-Math.min
+Copies bytes from an InputStream to chars on a Writer using the default character encoding of the platform
+Charset.defaultCharset-IOUtils.copy
+Copies bytes from an InputStream to chars on a Writer using the specified character encoding
+Charsets.toCharset-InputStreamReader.new-IOUtils.copy
+Copies bytes from an InputStream to chars on a Writer using the specified character encoding
+Charsets.toCharset-IOUtils.copy
+Copies chars from a Reader to a Writer
+IOUtils.copyLarge
+Copies chars from a large (over 2GB) Reader to a Writer
+IOUtils.copyLarge
+Copies chars from a large (over 2GB) Reader to a Writer
+Reader.read-Writer.write
+Copies some or all chars from a large (over 2GB) InputStream to an OutputStream, optionally skipping input chars
+IOUtils.copyLarge
+Copies some or all chars from a large (over 2GB) InputStream to an OutputStream, optionally skipping input chars
+IOUtils.skipFully-Reader.read-Writer.write-Math.min
+Copies chars from a Reader to bytes on an OutputStream using the default character encoding of the platform, and calling flush
+Charset.defaultCharset-IOUtils.copy
+Copies chars from a Reader to bytes on an OutputStream using the specified character encoding, and calling flush
+Charsets.toCharset-OutputStreamWriter.new-IOUtils.copy-OutputStreamWriter.flush
+Copies chars from a Reader to bytes on an OutputStream using the specified character encoding, and calling flush
+Charsets.toCharset-IOUtils.copy
+Compares the contents of two Streams to determine if they are equal or not
+BufferedInputStream.new-BufferedInputStream.new-InputStream.read-InputStream.read-InputStream.read-InputStream.read
+Compares the contents of two Readers to determine if they are equal or not
+IOUtils.toBufferedReader-IOUtils.toBufferedReader-Reader.read-Reader.read-Reader.read-Reader.read
+Compares the contents of two Readers to determine if they are equal or not, ignoring EOL characters
+IOUtils.toBufferedReader-IOUtils.toBufferedReader-BufferedReader.readLine-BufferedReader.readLine-String.equals-BufferedReader.readLine-BufferedReader.readLine-String.equals
+Skips bytes from an input byte stream
+IllegalArgumentException.new-Math.min-InputStream.read
+Skips bytes from a ReadableByteChannel
+IllegalArgumentException.new-Math.min-ByteBuffer.allocate-ByteBuffer.position-Math.min-ByteBuffer.limit-ReadableByteChannel.read
+Skips characters from an input character stream
+IllegalArgumentException.new-Math.min-Reader.read
+Skips the requested number of bytes or fail if there are not enough left
+IllegalArgumentException.new-IOUtils.skip-EOFException.new
+Skips the requested number of bytes or fail if there are not enough left.
+IllegalArgumentException.new-IOUtils.skip-EOFException.new
+Skips the requested number of characters or fail if there are not enough left
+IOUtils.skip-EOFException.new
+Reads characters from an input character stream
+IllegalArgumentException.new-Reader.read
+Reads characters from an input character stream
+IOUtils.read
+Reads bytes from an input stream
+IllegalArgumentException.new-InputStream.read
+Reads bytes from an input stream
+IOUtils.read
+Reads bytes from a ReadableByteChannel
+ByteBuffer.remaining-ByteBuffer.remaining-ReadableByteChannel.read-ByteBuffer.remaining
+Reads the requested number of characters or fail if there are not enough left
+IOUtils.read-EOFException.new
+Reads the requested number of characters or fail if there are not enough left
+IOUtils.readFully
+Reads the requested number of bytes or fail if there are not enough left
+IOUtils.read-EOFException.new
+Reads the requested number of bytes or fail if there are not enough left
+IOUtils.readFully
+Reads the requested number of bytes or fail if there are not enough left
+IOUtils.readFully
+Reads the requested number of bytes or fail if there are not enough left
+ByteBuffer.remaining-IOUtils.read-EOFException.new
