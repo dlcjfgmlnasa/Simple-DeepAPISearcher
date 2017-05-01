@@ -1,20 +1,9 @@
 # train.py
 from model.data_helper import PreDataProcessing
 from model.deepAPI_model import Seq2Seq
+from config import FLAGS
 import tensorflow as tf
 import os
-
-# directory
-tf.flags.DEFINE_string('train_dic', './data/train', 'train directory')
-tf.flags.DEFINE_string('board_dic', './board', 'tensorboard directory')
-
-tf.flags.DEFINE_integer('epochs', 50, 'epoch number')
-tf.flags.DEFINE_integer('batch_size', 4, 'batch number (even!!)')
-tf.flags.DEFINE_integer('learning_rate', 0.001, 'AdamOptimizer minimizer')
-tf.flags.DEFINE_integer('hidden_layer_size', 300,'RNN hidden layer size')
-tf.flags.DEFINE_integer('encoder_layer_size', 3, 'encoder layer size')
-tf.flags.DEFINE_integer('decoder_layer_size', 3, 'decoder layer size')
-FLAGS = tf.flags.FLAGS
 
 
 def main(_):
@@ -46,9 +35,16 @@ def main(_):
     with tf.Session() as sess:
         # remove tensor board directory
         if os.path.exists(FLAGS.board_dic):
-            os.removedirs(FLAGS.board_dic)
+            for tensor_board_file in os.listdir(FLAGS.board_dic):
+                tensor_board_file = os.path.join(FLAGS.board_dic, tensor_board_file)
+                os.remove(tensor_board_file)
+
+        # saver model
+        if not os.path.exists(FLAGS.model_dic):
+            os.makedirs(FLAGS.model_dic)
 
         writer = tf.summary.FileWriter(FLAGS.board_dic, graph=sess.graph)
+        saver = tf.train.Saver()
         sess.run(tf.global_variables_initializer())
         for i, batch in enumerate(batch_iter):
             enc_input, dec_input, tar_input = batch
@@ -57,6 +53,8 @@ def main(_):
             if i % 10 == 0:
                 print('cost : ', cost)
 
+        save_path = saver.save(sess, FLAGS.model_dic)
+        print('model saved in file : %s' % save_path)
 
 if __name__ == '__main__':
     tf.app.run()
