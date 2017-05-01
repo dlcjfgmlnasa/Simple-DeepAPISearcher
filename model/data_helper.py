@@ -7,6 +7,9 @@ import numpy as np
 
 
 class PreDataProcessing(object):
+    """
+    data pre
+    """
     def __init__(self):
         self.PAD = '_PAD_'
         self.EOS = '_EOS_'
