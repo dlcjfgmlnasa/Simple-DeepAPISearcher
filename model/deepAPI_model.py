@@ -51,6 +51,7 @@ class Seq2Seq(object):
         self.train_op = None
         self.RNNCell = None
         self.outputs = None
+        self.merged = None
 
         if RNN_type == 'LSTM':
             self.RNNCell = rnn.LSTMCell
@@ -60,7 +61,7 @@ class Seq2Seq(object):
             raise Exception('not support {} RNN type'.format(RNN_type))
 
         self.build_model()
-        self.merged = tf.summary.merge_all()
+        self.saver = tf.train.Saver(tf.global_variables())
 
     def build_model(self):
         encoder_cell, decoder_cell = self.build_cells()
@@ -72,9 +73,11 @@ class Seq2Seq(object):
         with tf.variable_scope('decode'):
             outputs, decoder_state = tf.nn.dynamic_rnn(decoder_cell, self.decoder_input,
                                                        initial_state=encoder_state, dtype=tf.float32)
-            tf.summary.histogram('decoder_ouput', outputs)
+            tf.summary.histogram('decoder_output', outputs)
+
         self.logits, self.cost, self.train_op = self.build_ops(outputs, self.target_input)
         self.outputs = tf.argmax(self.logits, 2)
+        self.merged = tf.summary.merge_all()
 
     def build_cells(self):
         # encoder cell
@@ -96,12 +99,9 @@ class Seq2Seq(object):
     def build_ops(self, outputs, targets):
         time_steps = tf.shape(outputs)[1]
 
-        with tf.name_scope('outputs') as scope:
-            outputs = tf.reshape(outputs, [-1, self.hidden_size])
-
-        with tf.name_scope('logits') as scope:
-            logits = tf.matmul(outputs, self.weight) + self.bias
-            logits = tf.reshape(logits, [-1, time_steps, self.decoder_vocab_size])
+        outputs = tf.reshape(outputs, [-1, self.hidden_size])
+        logits = tf.matmul(outputs, self.weight) + self.bias
+        logits = tf.reshape(logits, [-1, time_steps, self.decoder_vocab_size])
 
         with tf.name_scope('cost') as scope:
             cost = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=targets, logits=logits))
@@ -123,7 +123,13 @@ class Seq2Seq(object):
         )
 
     def test(self, session, enc_input, dec_input, tar_input):
-        print(enc_input)
-        print(dec_input)
-        print(tar_input)
         pass
+
+    def predicate(self, session, enc_input, dec_input):
+        return session.run(
+            self.outputs,
+            feed_dict={
+                self.encoder_input: enc_input,
+                self.decoder_input: dec_input
+            }
+        )
