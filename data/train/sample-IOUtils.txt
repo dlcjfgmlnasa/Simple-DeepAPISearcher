@@ -174,7 +174,7 @@ Copies bytes from an InputStream to an OutputStream using an internal buffer of 
 IOUtils.copyLarge
 Copies bytes from a large (over 2GB) InputStream to an OutputStream
 IOUtils.copy
-Copies bytes from a large (over 2GB) InputStream to an OutputStream
+Reads bytes from an input stream
 InputStream.read-OutputStream.write
 Copies some or all bytes from a large (over 2GB) InputStream to an OutputStream, optionally skipping input bytes
 IOUtils.copyLarge
