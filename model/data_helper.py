@@ -3,6 +3,7 @@ import os
 import nltk
 import re
 import copy
+import pickle
 import numpy as np
 
 
@@ -25,9 +26,15 @@ class PreDataProcessing(object):
         self.max_encoder_vocab_number = 0
         self.max_decoder_vocab_number = 0
 
+        self.encoder_dic_dir = None
+        self.decoder_dic_dir = None
+
         self.encoder_applied_padding_and_vector = []
         self.decoder_applied_padding_and_vector = []
         self.target_applied_padding_and_vector = []
+
+    def get_padding_list(self):
+        return [self.PAD, self.EOS, self.GO, self.PAD]
 
     def load_file_dir(self, file_dir):
         total_data_set = []
@@ -57,8 +64,47 @@ class PreDataProcessing(object):
         self.target_applied_padding_and_vector = self.__apply_one_hot_vector(target_sentence_padding,
                                                                              self.decoder_data_dic, target_mode=True)
 
+    def load_encoder_and_decoder_dic(self, dictionary_dic, encoder_name, decoder_name):
+        if not os.path.exists(dictionary_dic):
+            os.makedirs(dictionary_dic)
+        encoder_dic_dir = os.path.join(dictionary_dic, encoder_name)
+        decoder_dic_dir = os.path.join(dictionary_dic, decoder_name)
+
+        encoder_output = open(encoder_dic_dir, 'wb')
+        pickle.dump(self.encoder_data_dic, encoder_output)
+        encoder_output.close()
+
+        decoder_output = open(decoder_dic_dir, 'wb')
+        pickle.dump(self.decoder_data_dic, decoder_output)
+        decoder_output.close()
+
+    def set_helper_setting(self, encoder_dic_dir, decoder_dic_dir):
+        # load encoder, decoder dictionary
+        self.encoder_dic_dir = encoder_dic_dir
+        self.decoder_dic_dir = decoder_dic_dir
+        encoder_file = open(self.encoder_dic_dir, 'rb')
+        decoder_file = open(self.decoder_dic_dir, 'rb')
+
+        # load encoder, decoder dic
+        self.encoder_data_dic = pickle.load(encoder_file)
+        self.decoder_data_dic = pickle.load(decoder_file)
+        encoder_file.close()
+        decoder_file.close()
+
+        encoder_sentence_list = self.total_data_dic['q']
+        decoder_sentence_list = self.total_data_dic['a']
+        self.total_sentence_number = len(encoder_sentence_list)
+        encoder_sentence_list = self.__encoder_tokenizer(encoder_sentence_list)
+        decoder_sentence_list = self.__decoder_tokenizer(decoder_sentence_list)
+
+        # setting encoder, decoder number
+        self.encoder_max_number = max([len(sentence) for sentence in encoder_sentence_list])
+        self.decoder_max_number = max([len(sentence) for sentence in decoder_sentence_list])
+        self.max_encoder_vocab_number = len(self.encoder_data_dic)
+        self.max_decoder_vocab_number = len(self.decoder_data_dic)
+
     def sentence_apply_padding_and_vector(self, sentence):
-        encoder_sentence_list = self.__encoder_tokenizer(sentence)
+        encoder_sentence_list = self.__encoder_tokenizer([sentence])
         encoder_sentence_list = self.__make_encoder_padding(encoder_sentence_list)
         result_encoder = self.__apply_one_hot_vector(encoder_sentence_list, self.encoder_data_dic)
         decoder_sentence_list = [[self.GO] + [self.PAD for _ in range(self.decoder_max_number)]]
@@ -78,6 +124,12 @@ class PreDataProcessing(object):
             decoder_set.update(decoder_sentence)
         self.decoder_data_dic = {decoder: i for i, decoder in enumerate(decoder_set)}
         self.max_decoder_vocab_number= len(self.decoder_data_dic)
+
+    def get_encoder_dic(self):
+        return self.encoder_data_dic
+
+    def get_decoder_dic(self):
+        return self.decoder_data_dic
 
     def __apply_one_hot_vector(self, total_padding_list, word_dic, target_mode=False):
         par_max_vector_length = len(word_dic)
@@ -166,12 +218,6 @@ class PreDataProcessing(object):
                     np.array(self.decoder_applied_padding_and_vector[start:end]),
                     self.target_applied_padding_and_vector[start:end]
                 )
-
-    def make_dic(self, file_dir):
-        pass
-
-    def load_dic(self):
-        pass
 
     @staticmethod
     def __clean_str(string):
