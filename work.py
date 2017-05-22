@@ -9,7 +9,6 @@ from config import FLAGS
 
 def main(_):
     print('wait some time')
-
     encoder_dic_dir = os.path.join(FLAGS.dictionary_dir, FLAGS.encoder_dic_name)
     decoder_dic_dir = os.path.join(FLAGS.dictionary_dir, FLAGS.decoder_dic_name)
 
@@ -38,12 +37,11 @@ def main(_):
     padding_list = p2d_processing.get_padding_list()
 
     with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
         # model restore
         seq2seq.saver.restore(sess=sess, save_path=FLAGS.model_dir)
 
         while True:
-            sentence = input('값을 입력하시오!!')
+            sentence = input('input sentence !! : ')
             encoder, decoder = p2d_processing.sentence_apply_padding_and_vector(sentence)
             output = seq2seq.predicate(session=sess,
                                        enc_input=encoder,
