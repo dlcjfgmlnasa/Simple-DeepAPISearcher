@@ -13,7 +13,7 @@ tf.flags.DEFINE_string('dictionary_dir', './tmp/dictionary', 'encoder and decode
 tf.flags.DEFINE_string('encoder_dic_name', 'encoder.dic', 'encoder dictionary name')
 tf.flags.DEFINE_string('decoder_dic_name', 'decoder.dic', 'decoder dictionary name')
 
-tf.flags.DEFINE_integer('epochs', 100, 'epoch number')
+tf.flags.DEFINE_integer('epochs', 2000, 'epoch number')
 tf.flags.DEFINE_integer('batch_size', 20, 'batch number (even!!)')
 tf.flags.DEFINE_integer('learning_rate', 0.001, 'AdamOptimizer minimizer')
 tf.flags.DEFINE_integer('hidden_layer_size', 300, 'RNN hidden layer size')
